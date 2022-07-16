@@ -232,10 +232,6 @@ cc_library {
         "performance*",
         "portability*",
     ],
-
-    lto: {
-        thin: true,
-    },
 }
 
 // AIDL interface between libbinder and framework.jar
