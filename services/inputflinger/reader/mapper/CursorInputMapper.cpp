@@ -444,7 +444,7 @@ void CursorInputMapper::sync(nsecs_t when, nsecs_t readTime) {
     // the device in your pocket.
     // TODO: Use the input device configuration to control this behavior more finely.
     uint32_t policyFlags = 0;
-    if ((buttonsPressed || moved || scrolled) && getDeviceContext().isExternal()) {
+    if ((buttonsPressed || moved || movedAbs || scrolled) && getDeviceContext().isExternal()) {
         policyFlags |= POLICY_FLAG_WAKE;
     }
 
@@ -453,7 +453,7 @@ void CursorInputMapper::sync(nsecs_t when, nsecs_t readTime) {
                          mSource, displayId, policyFlags, lastButtonState, currentButtonState);
 
     // Send motion event.
-    if (downChanged || moved || scrolled || buttonsChanged) {
+    if (downChanged || moved || movedAbs || scrolled || buttonsChanged) {
         int32_t metaState = getContext()->getGlobalMetaState();
         int32_t buttonState = lastButtonState;
         int32_t motionEventAction;
